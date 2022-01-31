@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  web-server:
+    build:
+      context: .
+    container_name: web-server
+    image: web-server
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=${PORT}
+    volumes:
+      - ./views:/views
+      - ./public:/public
+      - ./.env:/.env
+    networks:
+      - web-server-network
+    ports:
+      - "${PORT}:${PORT}"
+
+networks:
+  web-server-network:
+    driver: bridge
