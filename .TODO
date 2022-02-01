@@ -1,0 +1,11 @@
+1. Database connection & Generic Repositories
+2. Logger Middleware & Service
+3. Queue Mechanism
+4. Emails Service
+5. Auth Service/Repository & Dtos
+6. Roles Service/Repository & Dtos
+7. Permissions Service/Repository & Dtos
+9. Permission Middleware/Guard
+10. User Service/Repository & Dtos
+11. Geonames Service/Repository
+12. Integration Clients & Mappers
