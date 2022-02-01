@@ -9,7 +9,7 @@ import { Container } from 'inversify';
 import { ErrorHandlerMiddleware } from "./middlewares";
 
 import './controllers';
-import { bindings } from "./inversify";
+import { bindings } from "./ioc";
 
 dotenv.config();
 
