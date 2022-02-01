@@ -24,11 +24,10 @@ const PORT = parseInt(process.env?.PORT || "8000");
   const server = new InversifyExpressServer(container);
 
   server.setConfig((app: Application) => {
+    app.use(express.json());
     app.use(express.urlencoded({
       extended: true
     }));
-
-    app.use(express.json());
 
     app.set('view engine', 'html');
     app.engine('html', hbs.__express);

@@ -14,4 +14,11 @@ export abstract class BaseHtmlController extends BaseHttpController {
       });
     });
   }
+
+  /*
+    // TODO: exception handler
+    exception(res, err) {
+      return this.render(res, "error-page", { error: err.message });
+    }
+  */
 }
