@@ -1,25 +1,45 @@
-import express, { Request, Response } from "express";
+import "reflect-metadata";
+
+import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import hbs from "hbs";
+import { InversifyExpressServer } from 'inversify-express-utils';
+import { Container } from 'inversify';
 
 import { ErrorHandlerMiddleware } from "./middlewares";
 
+import './controllers';
+import { bindings } from "./inversify";
+
 dotenv.config();
 
+// Enviroment variables
 const PORT = parseInt(process.env?.PORT || "8000");
 
-const app = express();
+(async () => {
+  const container = new Container();
 
-app.set('view engine', 'html');
-app.engine('html', hbs.__express);
+  await container.loadAsync(bindings);
 
-app.use(express.static('public'))
+  const server = new InversifyExpressServer(container);
 
-app.get("/", (req: Request, res: Response) => {
-  res.render('main');
-});
+  server.setConfig((app: Application) => {
+    app.use(express.urlencoded({
+      extended: true
+    }));
 
-// Middlewares
-app.use(ErrorHandlerMiddleware)
+    app.use(express.json());
 
-app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
+    app.set('view engine', 'html');
+    app.engine('html', hbs.__express);
+
+    app.use('/public', express.static('public'))
+
+  })
+
+  server.setErrorConfig((app) => app.use(ErrorHandlerMiddleware));
+
+  const serverInstance = server.build();
+
+  serverInstance.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT} :)`));
+})()
