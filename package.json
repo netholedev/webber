@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "arangojs": "^7.7.0",
+    "class-transformer": "^0.5.1",
+    "class-transformer-validator": "^0.9.1",
     "class-validator": "^0.13.2",
     "dotenv": "^15.0.0",
     "express": "^4.17.2",

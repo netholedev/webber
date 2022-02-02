@@ -1,13 +1,12 @@
 import { aql, Database } from "arangojs";
 import { DocumentCollection, EdgeCollection } from "arangojs/collection";
 import { ArangoDBBaseRepository, IArangoDBBaseRepository } from "../base";
+import { Property } from "../entities";
 
-interface IProperty { }
-
-export class PropertiesRepository extends ArangoDBBaseRepository<IProperty> implements IArangoDBBaseRepository<IProperty> {
+export class PropertiesRepository extends ArangoDBBaseRepository<Property> implements IArangoDBBaseRepository<Property> {
   private _collectionName: string = "properties";
 
-  collection: DocumentCollection<IProperty> & EdgeCollection<IProperty>;
+  collection: DocumentCollection<Property> & EdgeCollection<Property>;
 
   constructor(db: Database) {
     super(db);
