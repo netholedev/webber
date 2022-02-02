@@ -1,6 +1,6 @@
 import { aql, Database } from "arangojs";
 import { DocumentCollection, EdgeCollection } from "arangojs/collection";
-import { ArangoDBBaseRepository, IArangoDBBaseRepository } from "../../base";
+import { ArangoDBBaseRepository, IArangoDBBaseRepository } from "../base";
 
 interface IProperty { }
 

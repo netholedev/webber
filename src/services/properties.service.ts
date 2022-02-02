@@ -1,6 +1,5 @@
-import { aql } from 'arangojs';
 import { inject, injectable } from 'inversify';
-import { PropertiesRepository, TYPES } from '../../repositories';
+import { PropertiesRepository, TYPES } from '../repositories';
 
 @injectable()
 export class PropertiesService {

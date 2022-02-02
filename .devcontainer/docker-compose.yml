@@ -16,10 +16,10 @@ services:
     volumes:
       - ..:/webber:delegated
 
-  rabbitmq:
-    image: 'rabbitmq:management-alpine'
-    restart: always
-    network_mode: 'service:app'
+  # rabbitmq:
+  #   image: 'rabbitmq:management-alpine'
+  #   restart: always
+  #   network_mode: 'service:app'
 
   arangodb:
     image: arangodb/arangodb:latest
