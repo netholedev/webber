@@ -1,0 +1,41 @@
+version: '3.8'
+
+# networks:
+#   app_network:
+#     external: true
+
+volumes:
+  webber_arangodb_volume:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sleep infinity
+    volumes:
+      - ..:/webber:delegated
+
+  rabbitmq:
+    image: 'rabbitmq:management-alpine'
+    restart: always
+    network_mode: 'service:app'
+
+  arangodb:
+    image: arangodb/arangodb:latest
+    restart: unless-stopped
+    environment:
+      ARANGO_ROOT_PASSWORD: 'example'
+    network_mode: 'service:app'
+    volumes:
+      - webber_arangodb_volume:/var/lib/arangodb3
+
+  # redis:
+  #   image: "redis:alpine"
+  #   command: redis-server --requirepass sOmE_sEcUrE_pAsS
+  #   volumes:
+  #    - $PWD/redis-data:/var/lib/redis
+  #    - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+  #   environment:
+  #    - REDIS_REPLICATION_MODE=master
+  #   network_mode: "service:app"

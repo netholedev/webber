@@ -1,5 +1,7 @@
-export * from './config';
+export * from './config.service';
+export * from './properties.service';
 
 export const TYPES = {
-  ConfigService: Symbol.for('ConfigService')
+  ConfigService: Symbol.for('ConfigService'),
+  PropertiesService: Symbol.for('PropertiesService'),
 };

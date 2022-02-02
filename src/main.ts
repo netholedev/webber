@@ -32,13 +32,16 @@ const PORT = parseInt(process.env?.PORT || "8000");
     app.set('view engine', 'html');
     app.engine('html', hbs.__express);
 
-    app.use('/public', express.static('public'))
-
+    app.use('/public', express.static('public'));
   })
 
   server.setErrorConfig((app) => app.use(ErrorHandlerMiddleware));
 
   const serverInstance = server.build();
 
-  serverInstance.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT} :)`));
+  console.log(`Getting ready...`)
+
+  setTimeout(() => {
+    serverInstance.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT} :)`));
+  }, 3000)
 })()
